@@ -1,0 +1,9 @@
+# Local / editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Uploaded CV files should not be committed
+Common/uploads/cv/*
+!Common/uploads/cv/.gitkeep
