@@ -114,23 +114,38 @@ function validateForm(form){
     if(sal && Number(sal) < 0){ setError(form,"expected_salary","Salary cannot be negative."); ok=false; }
   }
 
-  if(type === "job"){
+if(type === "job"){
     var jt = req("job_title","Job title");
-    if(jt && jt.length < 3){ setError(form,"job_title","Job title must be at least 3 characters."); ok=false; }
-    req("category","Category");
+    if(jt && jt.length < 3){
+        setError(form,"job_title","Job title must be at least 3 characters.");
+        ok=false;
+    }
+
+    req("category_id","Category");
     req("job_type","Job type");
     req("location","Location");
+
     var salary = req("salary","Salary");
-    if(salary && Number(salary) < 0){ setError(form,"salary","Salary cannot be negative."); ok=false; }
+
     var deadline = req("deadline","Deadline");
     if(deadline){
-      var today = new Date(); today.setHours(0,0,0,0);
-      var d = new Date(deadline + "T00:00:00");
-      if(d < today){ setError(form,"deadline","Deadline cannot be in the past."); ok=false; }
+        var today = new Date();
+        today.setHours(0,0,0,0);
+
+        var d = new Date(deadline + "T00:00:00");
+
+        if(d < today){
+            setError(form,"deadline","Deadline cannot be in the past.");
+            ok=false;
+        }
     }
+
     var desc = req("description","Description");
-    if(desc && desc.length < 30){ setError(form,"description","Write at least 30 characters."); ok=false; }
-  }
+    if(desc && desc.length < 30){
+        setError(form,"description","Write at least 30 characters.");
+        ok=false;
+    }
+} //badhan part 
 
   if(type === "tip"){
     var tt = req("title","Title");
